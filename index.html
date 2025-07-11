@@ -1,68 +1,50 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Protocol Ultima Birthday Sana behna 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Magical Birthday Universe - Sana behna 🎂</title>
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
+      overflow: hidden;
       height: 100%;
+      background: linear-gradient(135deg, #ff33cc, #6600ff, #00ffe7);
+      animation: gradientMove 10s ease infinite alternate;
       font-family: 'Comic Sans MS', cursive;
-      overflow-x: hidden;
-      background: linear-gradient(120deg, #ff33cc 0%, #cc00ff 100%);
       color: white;
     }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
     canvas {
-      position: fixed;
+      display: block;
+      position: absolute;
       top: 0;
       left: 0;
       z-index: -1;
     }
-    h1 {
-      font-size: 2.5em;
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.2em;
       text-align: center;
-      margin-top: 20px;
-      color: #fff;
-      animation: glitch 1s infinite;
+      animation: neonGlow 2s infinite alternate;
+      letter-spacing: 1px;
     }
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px #ff00c8, -2px -2px #00ffe7; }
-      20% { text-shadow: -2px 2px #ff00c8, 2px -2px #00ffe7; }
-      40% { text-shadow: 2px -2px #ff00c8, -2px 2px #00ffe7; }
-      60% { text-shadow: -2px -2px #ff00c8, 2px 2px #00ffe7; }
-      80% { text-shadow: 2px 2px #ff00c8, -2px -2px #00ffe7; }
-      100% { text-shadow: -2px 2px #ff00c8, 2px -2px #00ffe7; }
+    @keyframes neonGlow {
+      from { text-shadow: 0 0 10px #ff00c8, 0 0 20px #00ffe7, 0 0 30px #ff00c8; }
+      to   { text-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7, 0 0 60px #ff00c8; }
     }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 30px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 15px;
-      width: 150px;
-      height: 200px;
-      margin: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.5s, box-shadow 0.5s;
-    }
-    .card:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7;
-    }
-    .liquid-btn {
-      display: inline-block;
-      margin-top: 30px;
+    .surprise-btn {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       padding: 15px 30px;
       font-size: 18px;
       color: #fff;
@@ -70,120 +52,141 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      position: relative;
       overflow: hidden;
-      transition: background 0.5s;
+      transition: transform 0.3s;
     }
-    .liquid-btn::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: rgba(255,255,255,0.3);
-      transform: skewX(-25deg);
-      transition: left 0.7s;
+    .surprise-btn:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7;
     }
-    .liquid-btn:hover::before {
-      left: 125%;
-    }
-    .final-screen {
+    .final-message {
       display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      color: #fff;
-      justify-content: center;
-      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
       text-align: center;
-      flex-direction: column;
-      z-index: 999;
-    }
-    .final-text {
-      font-size: 24px;
-      animation: glow 2s infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff00c8, 0 0 20px #00ffe7; }
-      to { text-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7; }
+      animation: neonGlow 2s infinite alternate;
+      z-index: 10;
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
-<canvas id="bgCanvas"></canvas><h1>🎉 Happy Birthday Sana behna! 🎂</h1><div class="cards">
-  <div class="card" onclick="openCard(this, 'Tum sabse pyaari ho! 💕')">Card 1</div>
-  <div class="card" onclick="openCard(this, 'Always keep smiling! ✨')">Card 2</div>
-  <div class="card" onclick="openCard(this, 'You are a shining star! ⭐')">Card 3</div>
-  <div class="card" onclick="openCard(this, 'Stay blessed & happy! 💖')">Card 4</div>
-</div><button class="liquid-btn" onclick="showFinalScreen()">🎁 Click for Big Surprise</button>
 
-<div class="final-screen" id="finalScreen">
-  <div class="final-text">💖 Thank you Sana behna! You are the best, keep shining always! 💫</div>
-</div><script>
-  let openedCards = 0;
+<canvas id="bgCanvas"></canvas>
 
-  function openCard(card, msg) {
-    if (!card.dataset.opened) {
-      card.innerHTML = msg;
-      card.dataset.opened = 'true';
-      openedCards++;
-    }
-  }
+<div class="center-text" id="centerText">🎉 Happy Birthday Sana behna! 🎂</div>
+<button class="surprise-btn" onclick="triggerSurprise()">✨ Surprise Me ✨</button>
 
-  function showFinalScreen() {
-    document.getElementById('finalScreen').style.display = 'flex';
-  }
+<div class="final-message" id="finalMessage"></div>
 
-  // Cosmic particles
+<script>
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
-  let particles = [];
+  let words = [];
+  let stars = [];
+  let exploding = false;
+
+  const floatingTexts = ["Happy Birthday", "Sana behna", "Stay blessed", "🎂", "💖", "✨", "Shine on!", "🎉", "🌸"];
+  const surpriseMessages = [
+    "💖 You are magical!\nAlways keep shining, Sana behna! 🌟💫",
+    "🎉 You’re the best sister ever!\nKeep smiling forever! 💖✨",
+    "🌙 Shine like the stars!\nHappy Birthday Sana behna! 💫",
+    "🌸 Stay beautiful, stay blessed!\nLots of love! 💖🎂",
+    "🌟 You light up our universe!\nHappy B'day, Sana behna! 🎉"
+  ];
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    createWords();
+    createStars();
   }
 
-  function createParticles() {
-    particles = [];
-    for (let i = 0; i < 100; i++) {
-      particles.push({
+  function createWords() {
+    words = [];
+    for (let i = 0; i < 25; i++) {
+      words.push({
+        text: floatingTexts[Math.floor(Math.random() * floatingTexts.length)],
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 1,
-        speedX: Math.random() * 1 - 0.5,
-        speedY: Math.random() * 1 - 0.5
+        size: Math.random() * 20 + 16,
+        speedX: (Math.random() - 0.5) * 1.2,
+        speedY: (Math.random() - 0.5) * 1.2,
+        opacity: 1
       });
     }
   }
 
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
-      p.x += p.speedX;
-      p.y += p.speedY;
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < 80; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5 + 0.5,
+        speedY: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
 
-      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-    });
-    requestAnimationFrame(animateParticles);
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Stars
+    ctx.fillStyle = 'white';
+    for (let star of stars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fill();
+      star.y += star.speedY;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    }
+
+    // Words
+    for (let w of words) {
+      ctx.font = w.size + "px Comic Sans MS";
+      ctx.fillStyle = `rgba(255, 255, 255, ${w.opacity})`;
+      ctx.fillText(w.text, w.x, w.y);
+
+      if (!exploding) {
+        w.x += w.speedX;
+        w.y += w.speedY;
+      } else {
+        w.x += w.speedX * 5;
+        w.y += w.speedY * 5;
+        w.opacity -= 0.02;
+      }
+
+      if (w.x < 0 || w.x > canvas.width - 50) w.speedX *= -1;
+      if (w.y < 20 || w.y > canvas.height - 20) w.speedY *= -1;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  function triggerSurprise() {
+    exploding = true;
+    document.getElementById("centerText").style.display = "none";
+    setTimeout(() => {
+      // Choose random surprise message
+      const msg = surpriseMessages[Math.floor(Math.random() * surpriseMessages.length)];
+      document.getElementById("finalMessage").innerText = msg;
+      document.getElementById("finalMessage").style.display = "block";
+      exploding = false;
+      createWords();
+    }, 2000);
   }
 
   resizeCanvas();
-  createParticles();
-  animateParticles();
+  animate();
+  window.addEventListener('resize', resizeCanvas);
+</script>
 
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-    createParticles();
-  });
-</script></body>
+</body>
 </html>
