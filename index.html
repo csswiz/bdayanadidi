@@ -2,325 +2,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Happy Birthday Sana behna 🎉</title>
+  <title>Ultimate Happy Birthday Sana behna 🎉</title>
   <style>
+    html, body {margin:0; padding:0; overflow-x:hidden; font-family:'Comic Sans MS',cursive;}
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      overflow-x: hidden;
-    }@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-h1 {
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 0 10px #ff33cc, 0 0 20px #ff33cc, 0 0 30px #ff33cc;
-  font-size: 2.5em;
-  margin-top: 30px;
-}
-
-.container {
-  padding: 20px;
-  text-align: center;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 20px;
-  margin: 15px auto;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-}
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.popup-content {
-  background: #fff;
-  padding: 25px;
-  border-radius: 20px;
-  text-align: center;
-  position: relative;
-  animation: popup 0.5s;
-}
-
-@keyframes popup {
-  from {transform: scale(0.5);}
-  to {transform: scale(1);}
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.slider-text {
-  margin-top: 30px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #fff;
-  animation: typing 8s steps(50, end) infinite alternate, blink 0.7s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: #fff; }
-}
-
-#surpriseBtn {
-  margin-top: 30px;
-  padding: 15px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background: #ff33cc;
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
-}
-
-#surpriseBtn:hover {
-  transform: scale(1.1);
-}
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 50;
-}
-
-.balloon {
-  position: absolute;
-  width: 50px;
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {transform: translateY(0);}
-  50% {transform: translateY(-100px);}
-  100% {transform: translateY(0);}
-}
-
+      background: black;
+      color: white;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      background: linear-gradient(270deg, #ff33cc, #33ccff, #ffcc33, #ff33cc);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 5s ease infinite;
+      margin: 20px;
+    }
+    @keyframes rainbow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid #fff;
+      border-radius: 15px;
+      width: 150px;
+      height: 200px;
+      margin: 10px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .card-front {
+      background: #ff33cc;
+    }
+    .card-back {
+      background: #fff;
+      color: #ff33cc;
+      transform: rotateY(180deg);
+      padding: 10px;
+    }
+    .big-message {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+    .final-text {
+      font-size: 24px;
+      max-width: 90%;
+    }
+    canvas#starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
   </style>
 </head>
-<body><canvas id="effectsCanvas"></canvas>
-
-<h1>🎉 Happy Birthday Sana behna! 🎂</h1><div class="container">
-  <p>Tap on each card to open your surprise wishes! 💖</p>  <div class="card" onclick="showPopup('Tum sabse pyaari ho Sana behna! 💕', 'confetti')">🌸 Surprise Wish 1</div>
-  <div class="card" onclick="showPopup('Tumhara smile sabse beautiful hai! ✨', 'hearts')">🌼 Surprise Wish 2</div>
-  <div class="card" onclick="showPopup('May your life be full of fireworks & joy! 🎇', 'fireworks')">🎇 Surprise Wish 3</div>
-  <div class="card" onclick="showPopup('Keep shining & enjoying your life! 💫', 'bounce')">🌟 Surprise Wish 4</div>
-  <div class="card" onclick="showPopup('Twinkle like the stars forever! ⭐', 'stars')">⭐ Surprise Wish 5</div>
-  <div class="card" onclick="showPopup('Sending you a big warm hug! 🤗', 'shake')">💖 Surprise Wish 6</div><button id="surpriseBtn" onclick="showBigSurprise()">🎁 SURPRISE 🎁</button>
-
-  <div class="slider-text">Be happy, be the same as you are, always stay blessed ✨💖</div>
-</div><div class="popup" id="popup">
-  <div class="popup-content" id="popupContent">
-    <span class="close-btn" onclick="closePopup()">&times;</span>
-    <p id="popupText"></p>
+<body>
+<canvas id="starfield"></canvas>
+<h1>🎉 Happy Birthday Sana behna! 🎂</h1>
+<div class="cards">
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">🎁 Open</div>
+      <div class="card-back">Tum sabse pyaari ho! 💕</div>
+    </div>
   </div>
-</div><script>
-  // Canvas confetti effect & balloons
-  const canvas = document.getElementById('effectsCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  // Fireworks particles
-  let particles = [];
-
-  function showPopup(text, effect) {
-    document.getElementById('popupText').innerText = text;
-    document.getElementById('popup').style.display = 'flex';
-    triggerEffect(effect);
-  }
-
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-  }
-
-  function triggerEffect(type) {
-    if (type === 'confetti') confettiEffect();
-    else if (type === 'hearts') emojiRain('💖');
-    else if (type === 'fireworks') fireworksEffect();
-    else if (type === 'bounce') bounceEffect();
-    else if (type === 'stars') emojiRain('⭐');
-    else if (type === 'shake') shakeEffect();
-  }
-
-  function confettiEffect() {
-    for (let i = 0; i < 50; i++) {
-      let conf = document.createElement('div');
-      conf.style.position = 'fixed';
-      conf.style.width = '10px';
-      conf.style.height = '10px';
-      conf.style.background = 'hsl(' + Math.random() * 360 + ', 70%, 60%)';
-      conf.style.top = '-20px';
-      conf.style.left = Math.random() * window.innerWidth + 'px';
-      conf.style.opacity = 1;
-      conf.style.transition = 'transform 2s ease, opacity 2s ease';
-      document.body.appendChild(conf);
-
-      setTimeout(() => {
-        conf.style.transform = 'translateY(' + window.innerHeight + 'px) rotateZ(720deg)';
-        conf.style.opacity = 0;
-      }, 20);
-
-      setTimeout(() => { conf.remove(); }, 2200);
-    }
-  }
-
-  function emojiRain(emoji) {
-    for (let i = 0; i < 30; i++) {
-      let el = document.createElement('div');
-      el.innerHTML = emoji;
-      el.style.position = 'fixed';
-      el.style.top = Math.random() * window.innerHeight + 'px';
-      el.style.left = Math.random() * window.innerWidth + 'px';
-      el.style.fontSize = Math.random() * 20 + 20 + 'px';
-      el.style.opacity = 1;
-      el.style.transition = 'transform 3s ease, opacity 3s ease';
-      document.body.appendChild(el);
-
-      setTimeout(() => {
-        el.style.transform = 'translateY(-100px)';
-        el.style.opacity = 0;
-      }, 50);
-
-      setTimeout(() => { el.remove(); }, 3000);
-    }
-  }
-
-  function fireworksEffect() {
-    for (let i = 0; i < 5; i++) {
-      launchFirework();
-    }
-  }
-
-  function launchFirework() {
-    const x = Math.random() * canvas.width;
-    const y = canvas.height;
-    const targetY = Math.random() * canvas.height / 2;
-    particles.push({ x, y, targetY, exploded: false, sub: [] });
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach((p) => {
-      if (!p.exploded) {
-        p.y -= 5;
-        ctx.fillStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 3, 0, 2 * Math.PI);
-        ctx.fill();
-        if (p.y < p.targetY) {
-          p.exploded = true;
-          for (let i = 0; i < 30; i++) {
-            p.sub.push({
-              x: p.x,
-              y: p.y,
-              angle: Math.random() * 2 * Math.PI,
-              speed: Math.random() * 4 + 2,
-              alpha: 1,
-            });
-          }
-        }
-      } else {
-        p.sub.forEach((s) => {
-          s.x += Math.cos(s.angle) * s.speed;
-          s.y += Math.sin(s.angle) * s.speed;
-          s.alpha -= 0.02;
-        });
-        p.sub = p.sub.filter(s => s.alpha > 0);
-        p.sub.forEach((s) => {
-          ctx.fillStyle = `rgba(255, 150, 0, ${s.alpha})`;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, 2, 0, 2 * Math.PI);
-          ctx.fill();
-        });
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">🎁 Open</div>
+      <div class="card-back">Keep smiling always! ✨</div>
+    </div>
+  </div>
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">🎁 Open</div>
+      <div class="card-back">May your dreams come true! 🌟</div>
+    </div>
+  </div>
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">🎁 Open</div>
+      <div class="card-back">Stay blessed forever! 💖</div>
+    </div>
+  </div>
+</div>
+<div class="big-message" id="bigMessage">
+  <div class="final-text">💖 Thank you Sana behna! You're the best! Keep shining always! 💫</div>
+</div>
+<script>
+  let opened = 0;
+  function flipCard(card) {
+    if (!card.classList.contains('flipped')) {
+      card.classList.add('flipped');
+      opened++;
+      if (opened === document.querySelectorAll('.card').length) {
+        setTimeout(() => {
+          document.getElementById('bigMessage').style.display = 'flex';
+        }, 1000);
       }
-    });
+    }
+  }// Starfield effect const canvas = document.getElementById('starfield'); const ctx = canvas.getContext('2d'); let stars = [];
 
-    particles = particles.filter(p => p.sub.length > 0 || !p.exploded);
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 
-    requestAnimationFrame(animate);
-  }
+function initStars() { stars = []; for (let i = 0; i < 100; i++) { stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5, alpha: Math.random(), speed: Math.random() * 0.5 + 0.2 }); } }
 
-  animate();
+function drawStars() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let star of stars) { ctx.beginPath(); ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI); ctx.fillStyle = rgba(255, 255, 255, ${star.alpha}); ctx.fill(); star.y += star.speed; if (star.y > canvas.height) { star.y = 0; star.x = Math.random() * canvas.width; } } requestAnimationFrame(drawStars); }
 
-  function bounceEffect() {
-    const content = document.getElementById('popupContent');
-    content.style.animation = 'bounceAnim 1s';
-    setTimeout(() => { content.style.animation = ''; }, 1000);
-  }
+resize(); initStars(); drawStars();
 
-  function shakeEffect() {
-    const content = document.getElementById('popupContent');
-    content.style.animation = 'shakeAnim 0.5s';
-    setTimeout(() => { content.style.animation = ''; }, 500);
-  }
+window.addEventListener('resize', () => { resize(); initStars(); });
 
-  function showBigSurprise() {
-    alert('🎉 Sana behna! You are the best! Keep smiling & stay blessed always! 💖✨');
-    confettiEffect();
-  }
+// Magic cursor particles document.addEventListener('mousemove', e => { for (let i = 0; i < 5; i++) { let particle = document.createElement('div'); particle.innerHTML = '✨'; particle.style.position = 'fixed'; particle.style.left = (e.pageX + Math.random() * 20 - 10) + 'px'; particle.style.top = (e.pageY + Math.random() * 20 - 10) + 'px'; particle.style.fontSize = '16px'; particle.style.opacity = 1; particle.style.transition = 'transform 1s ease, opacity 1s ease'; document.body.appendChild(particle);
 
-  window.addEventListener('click', () => emojiRain('💖'));
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script><style>
-  @keyframes bounceAnim {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.2); }
-    50% { transform: scale(0.9); }
-    75% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-  @keyframes shakeAnim {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); }
-    75% { transform: translateX(-10px); }
-  }
-</style></body>
+setTimeout(() => {
+    particle.style.transform = 'translateY(-50px)';
+    particle.style.opacity = 0;
+  }, 10);
+
+  setTimeout(() => {
+    particle.remove();
+  }, 1000);
+}
+
+}); </script>
+
+</body>
 </html>
