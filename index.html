@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Sana behna 🎂✨</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffccff, #e0b3ff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+    }
+    h1, p {
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 15px auto;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      animation: popup 0.5s;
+    }
+    @keyframes popup {
+      from {transform: scale(0.5);}
+      to {transform: scale(1);}
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .cake {
+      width: 150px;
+      margin: 30px auto;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .cake:hover {
+      transform: scale(1.1);
+    }
+    .message {
+      display: none;
+      font-size: 22px;
+      color: #ff3399;
+      margin-top: 20px;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="effectsCanvas"></canvas>
+
+<div class="container">
+  <h1 style="color:#cc0066;">🎉 Happy Birthday Sana behna! 🎂</h1>
+  <p>Tap on each card to open your surprise wishes! 💖</p>
+
+  <div class="card" onclick="showPopup('Tum sabse pyaari ho Sana behna! 💕', 'confetti')">🌸 Surprise Wish 1</div>
+  <div class="card" onclick="showPopup('Tumhara smile sabse beautiful hai! ✨', 'hearts')">🌼 Surprise Wish 2</div>
+  <div class="card" onclick="showPopup('May your life be full of fireworks & joy! 🎇', 'fireworks')">🎇 Surprise Wish 3</div>
+  <div class="card" onclick="showPopup('Keep shining & bouncing in life! 💫', 'bounce')">🌟 Surprise Wish 4</div>
+  <div class="card" onclick="showPopup('Twinkle like the stars forever! ⭐', 'stars')">⭐ Surprise Wish 5</div>
+  <div class="card" onclick="showPopup('Sending you a big warm hug! 🤗', 'shake')">💖 Surprise Wish 6</div>
+
+  <img src="https://i.ibb.co/jW0xQ9m/cake.png" alt="Cake" class="cake" id="cake" onclick="cutCake()">
+  <div class="message" id="cutMessage">🎂 Happiest B'day Sana behna 🎉</div>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content" id="popupContent">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <p id="popupText"></p>
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById('effectsCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  function showPopup(text, effect) {
+    document.getElementById('popupText').innerText = text;
+    document.getElementById('popup').style.display = 'flex';
+    triggerEffect(effect);
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  function cutCake() {
+    document.getElementById('cake').style.opacity = '0.3';
+    document.getElementById('cutMessage').style.display = 'block';
+    triggerEffect('fireworks');
+  }
+
+  function triggerEffect(type) {
+    if (type === 'confetti') confettiEffect();
+    else if (type === 'hearts') heartsEffect();
+    else if (type === 'fireworks') fireworksEffect();
+    else if (type === 'bounce') bounceEffect();
+    else if (type === 'stars') starsEffect();
+    else if (type === 'shake') shakeEffect();
+  }
+
+  function confettiEffect() {
+    for (let i = 0; i < 50; i++) {
+      let conf = document.createElement('div');
+      conf.style.position = 'fixed';
+      conf.style.width = '10px';
+      conf.style.height = '10px';
+      conf.style.background = 'hsl(' + Math.random() * 360 + ', 70%, 60%)';
+      conf.style.top = '-20px';
+      conf.style.left = Math.random() * window.innerWidth + 'px';
+      conf.style.opacity = 1;
+      conf.style.transition = 'transform 2s ease, opacity 2s ease';
+      document.body.appendChild(conf);
+
+      setTimeout(() => {
+        conf.style.transform = 'translateY(' + window.innerHeight + 'px) rotateZ(720deg)';
+        conf.style.opacity = 0;
+      }, 20);
+
+      setTimeout(() => { conf.remove(); }, 2200);
+    }
+  }
+
+  function heartsEffect() {
+    for (let i = 0; i < 30; i++) {
+      let heart = document.createElement('div');
+      heart.innerHTML = '💖';
+      heart.style.position = 'fixed';
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+      heart.style.opacity = 1;
+      heart.style.transition = 'transform 3s ease, opacity 3s ease';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.style.transform = 'translateY(-100px)';
+        heart.style.opacity = 0;
+      }, 50);
+
+      setTimeout(() => { heart.remove(); }, 3000);
+    }
+  }
+
+  function fireworksEffect() {
+    for (let i = 0; i < 5; i++) {
+      launchFirework();
+    }
+  }
+
+  let particles = [];
+
+  function launchFirework() {
+    const x = Math.random() * canvas.width;
+    const y = canvas.height;
+    const targetY = Math.random() * canvas.height / 2;
+    particles.push({ x, y, targetY, exploded: false, sub: [] });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+      if (!p.exploded) {
+        p.y -= 5;
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, 2 * Math.PI);
+        ctx.fill();
+        if (p.y < p.targetY) {
+          p.exploded = true;
+          for (let i = 0; i < 30; i++) {
+            p.sub.push({
+              x: p.x,
+              y: p.y,
+              angle: Math.random() * 2 * Math.PI,
+              speed: Math.random() * 4 + 2,
+              alpha: 1,
+            });
+          }
+        }
+      } else {
+        p.sub.forEach((s) => {
+          s.x += Math.cos(s.angle) * s.speed;
+          s.y += Math.sin(s.angle) * s.speed;
+          s.alpha -= 0.02;
+        });
+        p.sub = p.sub.filter(s => s.alpha > 0);
+        p.sub.forEach((s) => {
+          ctx.fillStyle = `rgba(255, 150, 0, ${s.alpha})`;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, 2, 0, 2 * Math.PI);
+          ctx.fill();
+        });
+      }
+    });
+
+    particles = particles.filter(p => p.sub.length > 0 || !p.exploded);
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  function bounceEffect() {
+    const content = document.getElementById('popupContent');
+    content.style.animation = 'bounceAnim 1s';
+    setTimeout(() => { content.style.animation = ''; }, 1000);
+  }
+
+  function starsEffect() {
+    for (let i = 0; i < 30; i++) {
+      let star = document.createElement('div');
+      star.innerHTML = '⭐';
+      star.style.position = 'fixed';
+      star.style.top = Math.random() * window.innerHeight + 'px';
+      star.style.left = Math.random() * window.innerWidth + 'px';
+      star.style.fontSize = Math.random() * 15 + 15 + 'px';
+      star.style.opacity = 1;
+      star.style.transition = 'transform 3s ease, opacity 3s ease';
+      document.body.appendChild(star);
+
+      setTimeout(() => {
+        star.style.transform = 'translateY(-150px)';
+        star.style.opacity = 0;
+      }, 50);
+
+      setTimeout(() => { star.remove(); }, 3000);
+    }
+  }
+
+  function shakeEffect() {
+    const content = document.getElementById('popupContent');
+    content.style.animation = 'shakeAnim 0.5s';
+    setTimeout(() => { content.style.animation = ''; }, 500);
+  }
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+<style>
+  @keyframes bounceAnim {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(0.9); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  @keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+  }
+</style>
+
+</body>
+</html>
