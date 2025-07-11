@@ -3,189 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎉 Magical Birthday Universe - Sana behna 🎂</title>
+  <title>Happy Birthday Sana behna! 🎉</title>
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
+      font-family: "Comic Sans MS", cursive;
+      background: linear-gradient(135deg, #ffd6f6, #ffe6f0, #e0f7fa);
       overflow: hidden;
-      height: 100%;
-      background: linear-gradient(135deg, #ff33cc, #6600ff, #00ffe7);
-      animation: gradientMove 10s ease infinite alternate;
-      font-family: 'Comic Sans MS', cursive;
-      color: white;
+      position: relative;
     }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    canvas {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    .center-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2.2em;
+
+    .center-container {
       text-align: center;
-      animation: neonGlow 2s infinite alternate;
-      letter-spacing: 1px;
+      padding-top: 60px;
     }
-    @keyframes neonGlow {
-      from { text-shadow: 0 0 10px #ff00c8, 0 0 20px #00ffe7, 0 0 30px #ff00c8; }
-      to   { text-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7, 0 0 60px #ff00c8; }
+
+    .animated-text {
+      font-size: 2.5em;
+      background: linear-gradient(45deg, #ff33cc, #00ccff);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: fadeIn 2s ease-in-out infinite alternate;
     }
-    .surprise-btn {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 15px 30px;
-      font-size: 18px;
-      color: #fff;
-      background: linear-gradient(135deg, #ff00c8, #00ffe7);
-      border: none;
-      border-radius: 30px;
+
+    @keyframes fadeIn {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+
+    .card {
+      background: white;
+      width: 250px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s, box-shadow 0.5s;
       cursor: pointer;
-      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .cake {
+      font-size: 3em;
+      cursor: pointer;
       transition: transform 0.3s;
     }
-    .surprise-btn:hover {
-      transform: translateX(-50%) scale(1.1);
-      box-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7;
+
+    .cake:hover {
+      transform: rotate(-10deg) scale(1.2);
     }
-    .final-message {
-      display: none;
+
+    .emoji, .confetti, .heart {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 28px;
-      text-align: center;
-      animation: neonGlow 2s infinite alternate;
-      z-index: 10;
-      line-height: 1.4;
+      font-size: 2em;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to   { transform: translateY(-200px); opacity: 0; }
+    }
+
+    @keyframes fallDown {
+      from { transform: translateY(-200px); opacity: 1; }
+      to   { transform: translateY(100vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-<canvas id="bgCanvas"></canvas>
+<div class="center-container">
+  <div class="animated-text">🎉 Happy Birthday Sana behna! 🎂</div>
 
-<div class="center-text" id="centerText">🎉 Happy Birthday Sana behna! 🎂</div>
-<button class="surprise-btn" onclick="triggerSurprise()">✨ Surprise Me ✨</button>
+  <div class="card">
+    <p>Dear Sana behna, you’re the sweetest! Keep smiling and shining always! 💖✨</p>
+  </div>
 
-<div class="final-message" id="finalMessage"></div>
+  <div class="cake" onclick="celebrate()">🍰</div>
+</div>
 
 <script>
-  const canvas = document.getElementById('bgCanvas');
-  const ctx = canvas.getContext('2d');
-  let words = [];
-  let stars = [];
-  let exploding = false;
-
-  const floatingTexts = ["Happy Birthday", "Sana behna", "Stay blessed", "🎂", "💖", "✨", "Shine on!", "🎉", "🌸"];
-  const surpriseMessages = [
-    "💖 You are magical!\nAlways keep shining, Sana behna! 🌟💫",
-    "🎉 You’re the best sister ever!\nKeep smiling forever! 💖✨",
-    "🌙 Shine like the stars!\nHappy Birthday Sana behna! 💫",
-    "🌸 Stay beautiful, stay blessed!\nLots of love! 💖🎂",
-    "🌟 You light up our universe!\nHappy B'day, Sana behna! 🎉"
-  ];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    createWords();
-    createStars();
-  }
-
-  function createWords() {
-    words = [];
-    for (let i = 0; i < 25; i++) {
-      words.push({
-        text: floatingTexts[Math.floor(Math.random() * floatingTexts.length)],
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 20 + 16,
-        speedX: (Math.random() - 0.5) * 1.2,
-        speedY: (Math.random() - 0.5) * 1.2,
-        opacity: 1
-      });
-    }
-  }
-
-  function createStars() {
-    stars = [];
-    for (let i = 0; i < 80; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speedY: Math.random() * 0.5 + 0.2
-      });
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Stars
-    ctx.fillStyle = 'white';
-    for (let star of stars) {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fill();
-      star.y += star.speedY;
-      if (star.y > canvas.height) {
-        star.y = 0;
-        star.x = Math.random() * canvas.width;
-      }
-    }
-
-    // Words
-    for (let w of words) {
-      ctx.font = w.size + "px Comic Sans MS";
-      ctx.fillStyle = `rgba(255, 255, 255, ${w.opacity})`;
-      ctx.fillText(w.text, w.x, w.y);
-
-      if (!exploding) {
-        w.x += w.speedX;
-        w.y += w.speedY;
-      } else {
-        w.x += w.speedX * 5;
-        w.y += w.speedY * 5;
-        w.opacity -= 0.02;
-      }
-
-      if (w.x < 0 || w.x > canvas.width - 50) w.speedX *= -1;
-      if (w.y < 20 || w.y > canvas.height - 20) w.speedY *= -1;
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  function triggerSurprise() {
-    exploding = true;
-    document.getElementById("centerText").style.display = "none";
+  function createElement(type, content, className, x, y, animation, duration = 2000) {
+    const el = document.createElement("div");
+    el.className = className;
+    el.innerText = content;
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+    el.style.opacity = "1";
+    el.style.animation = `${animation} ${duration / 1000}s forwards`;
+    document.body.appendChild(el);
     setTimeout(() => {
-      // Choose random surprise message
-      const msg = surpriseMessages[Math.floor(Math.random() * surpriseMessages.length)];
-      document.getElementById("finalMessage").innerText = msg;
-      document.getElementById("finalMessage").style.display = "block";
-      exploding = false;
-      createWords();
-    }, 2000);
+      el.remove();
+    }, duration);
   }
 
-  resizeCanvas();
-  animate();
-  window.addEventListener('resize', resizeCanvas);
+  function showerEmojis() {
+    const emojis = ["🎉", "✨", "💖", "🥳"];
+    for (let i = 0; i < 20; i++) {
+      createElement("div", emojis[Math.floor(Math.random() * emojis.length)], "emoji", Math.random() * window.innerWidth, window.innerHeight - 100, "floatUp");
+    }
+  }
+
+  function confettiBurst() {
+    const confettiColors = ["🎊", "🎈", "🎉"];
+    for (let i = 0; i < 30; i++) {
+      createElement("div", confettiColors[Math.floor(Math.random() * confettiColors.length)], "confetti", Math.random() * window.innerWidth, -50, "fallDown", 2500);
+    }
+  }
+
+  function celebrate() {
+    showerEmojis();
+    confettiBurst();
+  }
+
+  function floatingHearts() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    heart.style.opacity = "1";
+    heart.style.animation = "floatUp 4s forwards";
+    document.body.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+
+  // Keep spawning hearts
+  setInterval(floatingHearts, 800);
 </script>
 
 </body>
