@@ -1,124 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Happy Birthday Sana behna 🎂✨</title>
+  <title>Happy Birthday Sana behna 🎉</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ffccff, #e0b3ff);
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       overflow-x: hidden;
-    }
-    h1, p {
-      text-align: center;
-    }
-    .container {
-      padding: 20px;
-      text-align: center;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 20px;
-      margin: 15px auto;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-    }
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-    .popup-content {
-      background: #fff;
-      padding: 25px;
-      border-radius: 20px;
-      text-align: center;
-      position: relative;
-      animation: popup 0.5s;
-    }
-    @keyframes popup {
-      from {transform: scale(0.5);}
-      to {transform: scale(1);}
-    }
-    .close-btn {
-      position: absolute;
-      top: 10px; right: 15px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .slider-text {
-      margin-top: 30px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #ff3399;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid #ff3399;
-      animation: typing 8s steps(50, end) infinite alternate, blink 0.7s step-end infinite;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    @keyframes blink {
-      from, to { border-color: transparent; }
-      50% { border-color: #ff3399; }
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 100;
-    }
+    }@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 10px #ff33cc, 0 0 20px #ff33cc, 0 0 30px #ff33cc;
+  font-size: 2.5em;
+  margin-top: 30px;
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  animation: popup 0.5s;
+}
+
+@keyframes popup {
+  from {transform: scale(0.5);}
+  to {transform: scale(1);}
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.slider-text {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  animation: typing 8s steps(50, end) infinite alternate, blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #fff; }
+}
+
+#surpriseBtn {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: #ff33cc;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+#surpriseBtn:hover {
+  transform: scale(1.1);
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.balloon {
+  position: absolute;
+  width: 50px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(-100px);}
+  100% {transform: translateY(0);}
+}
+
   </style>
 </head>
-<body>
+<body><canvas id="effectsCanvas"></canvas>
 
-<canvas id="effectsCanvas"></canvas>
-
-<div class="container">
-  <h1 style="color:#cc0066;">🎉 Happy Birthday Sana behna! 🎂</h1>
-  <p>Tap on each card to open your surprise wishes! 💖</p>
-
-  <div class="card" onclick="showPopup('Tum sabse pyaari ho Sana behna! 💕', 'confetti')">🌸 Surprise Wish 1</div>
+<h1>🎉 Happy Birthday Sana behna! 🎂</h1><div class="container">
+  <p>Tap on each card to open your surprise wishes! 💖</p>  <div class="card" onclick="showPopup('Tum sabse pyaari ho Sana behna! 💕', 'confetti')">🌸 Surprise Wish 1</div>
   <div class="card" onclick="showPopup('Tumhara smile sabse beautiful hai! ✨', 'hearts')">🌼 Surprise Wish 2</div>
   <div class="card" onclick="showPopup('May your life be full of fireworks & joy! 🎇', 'fireworks')">🎇 Surprise Wish 3</div>
   <div class="card" onclick="showPopup('Keep shining & enjoying your life! 💫', 'bounce')">🌟 Surprise Wish 4</div>
   <div class="card" onclick="showPopup('Twinkle like the stars forever! ⭐', 'stars')">⭐ Surprise Wish 5</div>
-  <div class="card" onclick="showPopup('Sending you a big warm hug! 🤗', 'shake')">💖 Surprise Wish 6</div>
+  <div class="card" onclick="showPopup('Sending you a big warm hug! 🤗', 'shake')">💖 Surprise Wish 6</div><button id="surpriseBtn" onclick="showBigSurprise()">🎁 SURPRISE 🎁</button>
 
   <div class="slider-text">Be happy, be the same as you are, always stay blessed ✨💖</div>
-</div>
-
-<div class="popup" id="popup">
+</div><div class="popup" id="popup">
   <div class="popup-content" id="popupContent">
     <span class="close-btn" onclick="closePopup()">&times;</span>
     <p id="popupText"></p>
   </div>
-</div>
-
-<script>
+</div><script>
+  // Canvas confetti effect & balloons
   const canvas = document.getElementById('effectsCanvas');
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
+  // Fireworks particles
+  let particles = [];
 
   function showPopup(text, effect) {
     document.getElementById('popupText').innerText = text;
@@ -132,10 +178,10 @@
 
   function triggerEffect(type) {
     if (type === 'confetti') confettiEffect();
-    else if (type === 'hearts') heartsEffect();
+    else if (type === 'hearts') emojiRain('💖');
     else if (type === 'fireworks') fireworksEffect();
     else if (type === 'bounce') bounceEffect();
-    else if (type === 'stars') starsEffect();
+    else if (type === 'stars') emojiRain('⭐');
     else if (type === 'shake') shakeEffect();
   }
 
@@ -161,24 +207,24 @@
     }
   }
 
-  function heartsEffect() {
+  function emojiRain(emoji) {
     for (let i = 0; i < 30; i++) {
-      let heart = document.createElement('div');
-      heart.innerHTML = '💖';
-      heart.style.position = 'fixed';
-      heart.style.top = Math.random() * window.innerHeight + 'px';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-      heart.style.opacity = 1;
-      heart.style.transition = 'transform 3s ease, opacity 3s ease';
-      document.body.appendChild(heart);
+      let el = document.createElement('div');
+      el.innerHTML = emoji;
+      el.style.position = 'fixed';
+      el.style.top = Math.random() * window.innerHeight + 'px';
+      el.style.left = Math.random() * window.innerWidth + 'px';
+      el.style.fontSize = Math.random() * 20 + 20 + 'px';
+      el.style.opacity = 1;
+      el.style.transition = 'transform 3s ease, opacity 3s ease';
+      document.body.appendChild(el);
 
       setTimeout(() => {
-        heart.style.transform = 'translateY(-100px)';
-        heart.style.opacity = 0;
+        el.style.transform = 'translateY(-100px)';
+        el.style.opacity = 0;
       }, 50);
 
-      setTimeout(() => { heart.remove(); }, 3000);
+      setTimeout(() => { el.remove(); }, 3000);
     }
   }
 
@@ -187,8 +233,6 @@
       launchFirework();
     }
   }
-
-  let particles = [];
 
   function launchFirework() {
     const x = Math.random() * canvas.width;
@@ -200,7 +244,7 @@
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach((p, index) => {
+    particles.forEach((p) => {
       if (!p.exploded) {
         p.y -= 5;
         ctx.fillStyle = 'white';
@@ -248,40 +292,23 @@
     setTimeout(() => { content.style.animation = ''; }, 1000);
   }
 
-  function starsEffect() {
-    for (let i = 0; i < 30; i++) {
-      let star = document.createElement('div');
-      star.innerHTML = '⭐';
-      star.style.position = 'fixed';
-      star.style.top = Math.random() * window.innerHeight + 'px';
-      star.style.left = Math.random() * window.innerWidth + 'px';
-      star.style.fontSize = Math.random() * 15 + 15 + 'px';
-      star.style.opacity = 1;
-      star.style.transition = 'transform 3s ease, opacity 3s ease';
-      document.body.appendChild(star);
-
-      setTimeout(() => {
-        star.style.transform = 'translateY(-150px)';
-        star.style.opacity = 0;
-      }, 50);
-
-      setTimeout(() => { star.remove(); }, 3000);
-    }
-  }
-
   function shakeEffect() {
     const content = document.getElementById('popupContent');
     content.style.animation = 'shakeAnim 0.5s';
     setTimeout(() => { content.style.animation = ''; }, 500);
   }
 
+  function showBigSurprise() {
+    alert('🎉 Sana behna! You are the best! Keep smiling & stay blessed always! 💖✨');
+    confettiEffect();
+  }
+
+  window.addEventListener('click', () => emojiRain('💖'));
   window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
-</script>
-
-<style>
+</script><style>
   @keyframes bounceAnim {
     0% { transform: scale(1); }
     25% { transform: scale(1.2); }
@@ -295,7 +322,5 @@
     50% { transform: translateX(10px); }
     75% { transform: translateX(-10px); }
   }
-</style>
-
-</body>
+</style></body>
 </html>
