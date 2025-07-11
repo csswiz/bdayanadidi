@@ -1,167 +1,189 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ultimate Happy Birthday Sana behna 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocol Ultima Birthday Sana behna 🎉</title>
   <style>
-    html, body {margin:0; padding:0; overflow-x:hidden; font-family:'Comic Sans MS',cursive;}
-    body {
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Comic Sans MS', cursive;
+      overflow-x: hidden;
       background: black;
       color: white;
-      text-align: center;
     }
-    h1 {
-      font-size: 2.5em;
-      background: linear-gradient(270deg, #ff33cc, #33ccff, #ffcc33, #ff33cc);
-      background-size: 600% 600%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbow 5s ease infinite;
-      margin: 20px;
-    }
-    @keyframes rainbow {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .card {
-      background: rgba(255,255,255,0.1);
-      border: 2px solid #fff;
-      border-radius: 15px;
-      width: 150px;
-      height: 200px;
-      margin: 10px;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 1s;
-      transform-style: preserve-3d;
-    }
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-    .card-front {
-      background: #ff33cc;
-    }
-    .card-back {
-      background: #fff;
-      color: #ff33cc;
-      transform: rotateY(180deg);
-      padding: 10px;
-    }
-    .big-message {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      color: #fff;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 999;
-    }
-    .final-text {
-      font-size: 24px;
-      max-width: 90%;
-    }
-    canvas#starfield {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
     }
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-top: 20px;
+      color: #fff;
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff00c8, -2px -2px #00ffe7; }
+      20% { text-shadow: -2px 2px #ff00c8, 2px -2px #00ffe7; }
+      40% { text-shadow: 2px -2px #ff00c8, -2px 2px #00ffe7; }
+      60% { text-shadow: -2px -2px #ff00c8, 2px 2px #00ffe7; }
+      80% { text-shadow: 2px 2px #ff00c8, -2px -2px #00ffe7; }
+      100% { text-shadow: -2px 2px #ff00c8, 2px -2px #00ffe7; }
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
+      width: 150px;
+      height: 200px;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+    .card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7;
+    }
+    .liquid-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, #ff00c8, #00ffe7);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s;
+    }
+    .liquid-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: rgba(255,255,255,0.3);
+      transform: skewX(-25deg);
+      transition: left 0.7s;
+    }
+    .liquid-btn:hover::before {
+      left: 125%;
+    }
+    .final-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+    .final-text {
+      font-size: 24px;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff00c8, 0 0 20px #00ffe7; }
+      to { text-shadow: 0 0 20px #ff00c8, 0 0 40px #00ffe7; }
+    }
   </style>
 </head>
 <body>
-<canvas id="starfield"></canvas>
-<h1>🎉 Happy Birthday Sana behna! 🎂</h1>
-<div class="cards">
-  <div class="card" onclick="flipCard(this)">
-    <div class="card-inner">
-      <div class="card-front">🎁 Open</div>
-      <div class="card-back">Tum sabse pyaari ho! 💕</div>
-    </div>
-  </div>
-  <div class="card" onclick="flipCard(this)">
-    <div class="card-inner">
-      <div class="card-front">🎁 Open</div>
-      <div class="card-back">Keep smiling always! ✨</div>
-    </div>
-  </div>
-  <div class="card" onclick="flipCard(this)">
-    <div class="card-inner">
-      <div class="card-front">🎁 Open</div>
-      <div class="card-back">May your dreams come true! 🌟</div>
-    </div>
-  </div>
-  <div class="card" onclick="flipCard(this)">
-    <div class="card-inner">
-      <div class="card-front">🎁 Open</div>
-      <div class="card-back">Stay blessed forever! 💖</div>
-    </div>
-  </div>
-</div>
-<div class="big-message" id="bigMessage">
-  <div class="final-text">💖 Thank you Sana behna! You're the best! Keep shining always! 💫</div>
-</div>
-<script>
-  let opened = 0;
-  function flipCard(card) {
-    if (!card.classList.contains('flipped')) {
-      card.classList.add('flipped');
-      opened++;
-      if (opened === document.querySelectorAll('.card').length) {
-        setTimeout(() => {
-          document.getElementById('bigMessage').style.display = 'flex';
-        }, 1000);
-      }
+<canvas id="bgCanvas"></canvas><h1>🎉 Happy Birthday Sana behna! 🎂</h1><div class="cards">
+  <div class="card" onclick="openCard(this, 'Tum sabse pyaari ho! 💕')">Card 1</div>
+  <div class="card" onclick="openCard(this, 'Always keep smiling! ✨')">Card 2</div>
+  <div class="card" onclick="openCard(this, 'You are a shining star! ⭐')">Card 3</div>
+  <div class="card" onclick="openCard(this, 'Stay blessed & happy! 💖')">Card 4</div>
+</div><button class="liquid-btn" onclick="showFinalScreen()">🎁 Click for Big Surprise</button>
+
+<div class="final-screen" id="finalScreen">
+  <div class="final-text">💖 Thank you Sana behna! You are the best, keep shining always! 💫</div>
+</div><script>
+  let openedCards = 0;
+
+  function openCard(card, msg) {
+    if (!card.dataset.opened) {
+      card.innerHTML = msg;
+      card.dataset.opened = 'true';
+      openedCards++;
     }
-  }// Starfield effect const canvas = document.getElementById('starfield'); const ctx = canvas.getContext('2d'); let stars = [];
+  }
 
-function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  function showFinalScreen() {
+    document.getElementById('finalScreen').style.display = 'flex';
+  }
 
-function initStars() { stars = []; for (let i = 0; i < 100; i++) { stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5, alpha: Math.random(), speed: Math.random() * 0.5 + 0.2 }); } }
+  // Cosmic particles
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
 
-function drawStars() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let star of stars) { ctx.beginPath(); ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI); ctx.fillStyle = rgba(255, 255, 255, ${star.alpha}); ctx.fill(); star.y += star.speed; if (star.y > canvas.height) { star.y = 0; star.x = Math.random() * canvas.width; } } requestAnimationFrame(drawStars); }
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
 
-resize(); initStars(); drawStars();
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5
+      });
+    }
+  }
 
-window.addEventListener('resize', () => { resize(); initStars(); });
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
 
-// Magic cursor particles document.addEventListener('mousemove', e => { for (let i = 0; i < 5; i++) { let particle = document.createElement('div'); particle.innerHTML = '✨'; particle.style.position = 'fixed'; particle.style.left = (e.pageX + Math.random() * 20 - 10) + 'px'; particle.style.top = (e.pageY + Math.random() * 20 - 10) + 'px'; particle.style.fontSize = '16px'; particle.style.opacity = 1; particle.style.transition = 'transform 1s ease, opacity 1s ease'; document.body.appendChild(particle);
+      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+    });
+    requestAnimationFrame(animateParticles);
+  }
 
-setTimeout(() => {
-    particle.style.transform = 'translateY(-50px)';
-    particle.style.opacity = 0;
-  }, 10);
+  resizeCanvas();
+  createParticles();
+  animateParticles();
 
-  setTimeout(() => {
-    particle.remove();
-  }, 1000);
-}
-
-}); </script>
-
-</body>
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    createParticles();
+  });
+</script></body>
 </html>
