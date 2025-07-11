@@ -62,25 +62,23 @@
       font-size: 20px;
       cursor: pointer;
     }
-    .cake {
-      width: 150px;
-      margin: 30px auto;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .cake:hover {
-      transform: scale(1.1);
-    }
-    .message {
-      display: none;
-      font-size: 22px;
+    .slider-text {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
       color: #ff3399;
-      margin-top: 20px;
-      animation: fadeIn 1s;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #ff3399;
+      animation: typing 8s steps(50, end) infinite alternate, blink 0.7s step-end infinite;
     }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #ff3399; }
     }
     canvas {
       position: fixed;
@@ -106,8 +104,7 @@
   <div class="card" onclick="showPopup('Twinkle like the stars forever! ⭐', 'stars')">⭐ Surprise Wish 5</div>
   <div class="card" onclick="showPopup('Sending you a big warm hug! 🤗', 'shake')">💖 Surprise Wish 6</div>
 
-  <img src="https://raw.githubusercontent.com/saadpasta/developerFolio/master/src/assets/images/birthday-cake.png" alt="Cake" class="cake" id="cake" onclick="cutCake()">
-  <div class="message" id="cutMessage">🎂 Happiest B'day Sana behna 🎉</div>
+  <div class="slider-text">Be happy, be the same as you are, always stay blessed ✨💖</div>
 </div>
 
 <div class="popup" id="popup">
@@ -131,12 +128,6 @@
 
   function closePopup() {
     document.getElementById('popup').style.display = 'none';
-  }
-
-  function cutCake() {
-    document.getElementById('cake').style.opacity = '0.3';
-    document.getElementById('cutMessage').style.display = 'block';
-    triggerEffect('fireworks');
   }
 
   function triggerEffect(type) {
