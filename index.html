@@ -1,128 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#ff8fb1">
-<title>Happy Birthday Ana Didi 🎉</title>
+<title>Happy Birthday Ana Didi 🎀</title>
 <style>
-/* Root variables & universal setup */
-:root {
-  --accent1: #ff8fb1;
-  --accent2: #ffd89b;
-  --accent3: #9ad3ff;
-  --bg-grad: linear-gradient(135deg,#ffdee9 0%,#b5fffc 100%);
-}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{margin:0;padding:0;width:100%;height:100%;font-family:'Poppins',system-ui,sans-serif;background:var(--bg-grad);overflow:hidden;}
+  /* Root colors */
+  :root{
+    --p1:#ff8fb1;
+    --p2:#ffd89b;
+    --p3:#9ad3ff;
+    --bg: linear-gradient(135deg,#ffe0f0 0%,#e0f9ff 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html, body{
+    height:100%; width:100%; overflow:hidden;
+    font-family:'Poppins', system-ui, sans-serif;
+    background: var(--bg);
+  }
+  body::before{
+    content:""; position:fixed; inset:0;
+    border:2px solid rgba(255,255,255,0.12);
+    border-radius:12px;
+    box-shadow: inset 0 0 40px rgba(255,255,255,0.12), 0 0 60px rgba(255,200,220,0.2);
+    pointer-events:none;
+  }
 
-/* Outer glowing frame */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;
-  border:2px solid rgba(255,255,255,0.12);
-  border-radius:16px;
-  box-shadow:inset 0 0 40px rgba(255,255,255,0.12),0 0 60px rgba(255,200,220,0.2);
-}
+  .container{
+    position:relative;
+    width:100%; height:100%;
+    display:flex; flex-direction:column;
+    justify-content:center; align-items:center;
+    text-align:center;
+    overflow:hidden;
+    padding:env(safe-area-inset-top) 12px env(safe-area-inset-bottom);
+  }
 
-/* Center content */
-.container{
-  position:relative;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  text-align:center;
-}
+  h1{
+    font-size:clamp(28px,8vw,42px);
+    background: linear-gradient(90deg,var(--p1),var(--p2),var(--p3));
+    background-size:200% 200%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:rainbow 6s linear infinite;
+    text-shadow:0 2px 12px rgba(0,0,0,0.12);
+    margin-bottom:8px;
+  }
+  @keyframes rainbow{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
 
-/* Main headline */
-h1{
-  font-size:clamp(28px,7vw,48px);
-  margin:0;
-  background:linear-gradient(90deg,#ff8fb1,#ffd89b,#9ad3ff,#b5ffd8);
-  background-size:200% 200%;
-  -webkit-background-clip:text;
-  color:transparent;
-  animation:rainbow 6s linear infinite;
-  text-shadow:0 3px 12px rgba(255,255,255,0.2);
-}
-@keyframes rainbow{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+  p{
+    font-size:clamp(14px,4vw,18px);
+    font-weight:600;
+    color:#222;
+    text-shadow:0 1px 6px rgba(255,255,255,0.3);
+    margin-bottom:16px;
+  }
 
-/* Subtext */
-p{
-  color:#fff;
-  font-weight:600;
-  font-size:clamp(14px,3.5vw,18px);
-  text-shadow:0 2px 10px rgba(0,0,0,0.25);
-  margin:10px 0 16px;
-}
+  .photo{
+    width:150px; height:150px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid rgba(255,255,255,0.4);
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    margin-bottom:12px;
+  }
+  .photo img{width:100%;height:100%;object-fit:cover;}
 
-/* Buttons */
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  z-index:10;
-}
-button{
-  border:none;
-  border-radius:12px;
-  font-weight:700;
-  padding:10px 16px;
-  font-size:16px;
-  color:#fff;
-  background:linear-gradient(90deg,#ff8fb1,#ffb6c1);
-  box-shadow:0 4px 18px rgba(0,0,0,0.2);
-  cursor:pointer;
-  transition:transform .2s;
-}
-button:active{transform:scale(0.94);}
-button.ghost{
-  background:rgba(255,255,255,0.15);
-  border:1px solid rgba(255,255,255,0.2);
-}
+  .buttons{
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+    margin-top:12px;
+  }
+  .buttons button{
+    border:none; border-radius:12px; padding:10px 16px;
+    font-weight:700; font-size:16px; color:#fff;
+    background:linear-gradient(90deg,var(--p1),#ffb6c1);
+    box-shadow:0 4px 18px rgba(0,0,0,0.2);
+    cursor:pointer; transition:transform 0.2s;
+  }
+  .buttons button:active{transform:scale(0.94);}
+  .buttons button.ghost{
+    background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2);
+  }
 
-/* Floating hearts & particles */
-canvas, .fx{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-}
-.fx div{
-  position:absolute;
-  font-size:18px;
-  will-change:transform,opacity;
-}
+  canvas, .fx{
+    position:fixed; inset:0; pointer-events:none;
+  }
+  .fx div{
+    position:absolute; font-size:18px; will-change:transform,opacity;
+  }
 
-/* Photo section */
-.photo{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  overflow:hidden;
-  border:3px solid rgba(255,255,255,0.4);
-  box-shadow:0 6px 20px rgba(0,0,0,0.3);
-  margin-bottom:12px;
-}
-.photo img{width:100%;height:100%;object-fit:cover;}
-
-/* Mobile safe areas */
-@supports (padding:max(0px)){
-  .container{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 8px);}
-}
 </style>
 </head>
 <body>
 <div class="container">
   <div class="photo"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=60" alt="Ana Didi"></div>
-  <h1>Happy Birthday<br>Ana Didi 🎀</h1>
+  <h1>Happy Birthday Ana Didi 🎀</h1>
   <p>Wishing you a day full of smiles, hugs & magic ✨</p>
 
   <div class="buttons">
@@ -136,93 +113,40 @@ canvas, .fx{
 <div class="fx" id="fx"></div>
 
 <script>
-/* ===== Responsive Fireworks (mobile-friendly) ===== */
-const c=document.getElementById('fireworks'),ctx=c.getContext('2d');
-function resize(){c.width=innerWidth; c.height=innerHeight;}
-addEventListener('resize',resize); resize();
+/* Canvas setup */
+const canvas=document.getElementById('fireworks');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+window.addEventListener('resize',resize); resize();
 
+/* Particle system */
 class Part{constructor(x,y,vx,vy,life,col){this.x=x;this.y=y;this.vx=vx;this.vy=vy;this.life=life;this.col=col;this.s=Math.random()*2+1;}
-  upd(){this.x+=this.vx;this.y+=this.vy;this.vy+=0.03;this.life--;}
-  draw(){ctx.globalAlpha=Math.max(this.life/60,0);ctx.fillStyle=this.col;ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,6.28);ctx.fill();ctx.globalAlpha=1;}
-}
+upd(){this.x+=this.vx;this.y+=this.vy;this.vy+=0.03;this.life--;}
+draw(){ctx.globalAlpha=Math.max(this.life/60,0);ctx.fillStyle=this.col;ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,6.28);ctx.fill();ctx.globalAlpha=1;}}
 let parts=[];
-function fire(x,y){
-  const cols=['#ff8fb1','#ffd89b','#9ad3ff','#b5ffd8'];
-  for(let i=0;i<40;i++){
-    const a=Math.random()*6.28,s=Math.random()*4+1;
-    parts.push(new Part(x,y,Math.cos(a)*s,Math.sin(a)*s,60,cols[Math.floor(Math.random()*cols.length)]));
-  }
-}
-function loop(){
-  ctx.clearRect(0,0,c.width,c.height);
-  parts.forEach(p=>{p.upd();p.draw();});
-  parts=parts.filter(p=>p.life>0);
-  requestAnimationFrame(loop);
-}
+function fire(x,y){const cols=['#ff8fb1','#ffd89b','#9ad3ff','#b5ffd8'];for(let i=0;i<40;i++){const a=Math.random()*6.28,s=Math.random()*4+1;parts.push(new Part(x,y,Math.cos(a)*s,Math.sin(a)*s,60,cols[Math.floor(Math.random()*cols.length)]));}}
+function loop(){ctx.clearRect(0,0,canvas.width,canvas.height);parts.forEach(p=>{p.upd();p.draw();});parts=parts.filter(p=>p.life>0);requestAnimationFrame(loop);}
 loop();
 
-/* ===== Floating texts ===== */
+/* Floating texts */
 const fx=document.getElementById('fx');
 const texts=["Love you Didi 💕","Keep shining 🌸","Best sister ever 💖","Joy & happiness 🎉","Stay awesome ✨"];
-function floatText(){
-  const t=document.createElement('div');
-  t.textContent=texts[Math.floor(Math.random()*texts.length)];
-  t.style.left=Math.random()*80+10+"%";
-  t.style.top="100%";
-  t.style.color=`hsl(${Math.random()*360},80%,80%)`;
-  fx.appendChild(t);
-  const tx=(Math.random()*2-1)*30;
-  t.animate([
-    {transform:`translate(0,0)`,opacity:1},
-    {transform:`translate(${tx}vw,-110vh)`,opacity:0}
-  ],{duration:8000+Math.random()*4000,easing:"linear"});
-  setTimeout(()=>t.remove(),12000);
-}
+function floatText(){const t=document.createElement('div');t.textContent=texts[Math.floor(Math.random()*texts.length)];t.style.left=Math.random()*80+10+"%";t.style.top="100%";t.style.color=`hsl(${Math.random()*360},80%,80%)`;fx.appendChild(t);const tx=(Math.random()*2-1)*30;t.animate([{transform:`translate(0,0)`,opacity:1},{transform:`translate(${tx}vw,-110vh)`,opacity:0}],{duration:8000+Math.random()*4000,easing:"linear"});setTimeout(()=>t.remove(),12000);}
 setInterval(floatText,1200);
 
-/* ===== Emoji burst ===== */
-function burst(x,y){
-  const pool=['🎉','💖','🎈','🌸','✨'];
-  for(let i=0;i<25;i++){
-    const e=document.createElement('div');
-    e.textContent=pool[Math.floor(Math.random()*pool.length)];
-    e.style.left=x+'px'; e.style.top=y+'px';
-    fx.appendChild(e);
-    const tx=(Math.random()-0.5)*200,ty=-Math.random()*200-60;
-    e.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${tx}px,${ty}px)`,opacity:0}],
-      {duration:1000+Math.random()*800,easing:'ease-out'});
-    setTimeout(()=>e.remove(),1800);
-  }
-}
+/* Emoji burst */
+function burst(x,y){const pool=['🎉','💖','🎈','🌸','✨'];for(let i=0;i<25;i++){const e=document.createElement('div');e.textContent=pool[Math.floor(Math.random()*pool.length)];e.style.left=x+'px';e.style.top=y+'px';fx.appendChild(e);const tx=(Math.random()-0.5)*200,ty=-Math.random()*200-60;e.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${tx}px,${ty}px)`,opacity:0}],{duration:1000+Math.random()*800,easing:'ease-out'});setTimeout(()=>e.remove(),1800);}}
 
-/* ===== Music toggle ===== */
 let music=new Audio("https://cdn.pixabay.com/download/audio/2022/10/31/audio_7c198fdc85.mp3?filename=happy-birthday-124521.mp3");
-music.loop=true; music.volume=0.4;
+music.loop=true;music.volume=0.4;
 let playing=false;
-musicBtn.onclick=()=>{
-  if(!playing){music.play().catch(()=>{});musicBtn.textContent="Music On 🎵";playing=true;}
-  else{music.pause();musicBtn.textContent="Play Music 🎵";playing=false;}
-};
+const musicBtn=document.getElementById('musicBtn');
+musicBtn.onclick=()=>{if(!playing){music.play().catch(()=>{});musicBtn.textContent="Music On 🎵";playing=true;}else{music.pause();musicBtn.textContent="Play Music 🎵";playing=false;}};
 
-/* ===== Buttons ===== */
-magicBtn.onclick=e=>{
-  fire(innerWidth/2,innerHeight*0.6);
-  burst(innerWidth/2,innerHeight*0.6);
-  if(!playing) music.play().catch(()=>{}), playing=true, musicBtn.textContent="Music On 🎵";
-};
-secretBtn.onclick=()=>{
-  burst(innerWidth/2,innerHeight/2);
-  fire(innerWidth/2,innerHeight/3);
-  const d=document.createElement('div');
-  d.style.position='fixed';d.style.left='50%';d.style.top='50%';d.style.transform='translate(-50%,-50%)';
-  d.style.background='rgba(255,255,255,0.2)';d.style.padding='16px 20px';d.style.borderRadius='12px';d.style.backdropFilter='blur(6px)';
-  d.style.color='#fff';d.style.fontWeight='700';d.style.textAlign='center';d.style.zIndex=999;
-  d.innerHTML=`💌 Ana Didi, you're my biggest inspiration!<br>— Peter 💖<br><br><button style="margin-top:6px;padding:6px 10px;border:none;border-radius:8px;">Close</button>`;
-  document.body.appendChild(d);
-  d.querySelector('button').onclick=()=>d.remove();
-};
+document.getElementById('magicBtn').onclick=e=>{fire(innerWidth/2,innerHeight*0.6);burst(innerWidth/2,innerHeight*0.6);if(!playing){music.play().catch(()=>{});playing=true;musicBtn.textContent="Music On 🎵";}};
+document.getElementById('secretBtn').onclick=()=>{burst(innerWidth/2,innerHeight/2);fire(innerWidth/2,innerHeight/3);const d=document.createElement('div');d.style.position='fixed';d.style.left='50%';d.style.top='50%';d.style.transform='translate(-50%,-50%)';d.style.background='rgba(255,255,255,0.9)';d.style.padding='16px 20px';d.style.borderRadius='12px';d.style.backdropFilter='blur(6px)';d.style.color='#111';d.style.fontWeight='700';d.style.textAlign='center';d.style.zIndex=999;d.innerHTML=`💌 Ana Didi, you're my biggest inspiration!<br>— Peter 💖<br><br><button style="margin-top:6px;padding:6px 10px;border:none;border-radius:8px;">Close</button>`;document.body.appendChild(d);d.querySelector('button').onclick=()=>d.remove();}
 
-/* ===== Start gentle intro firework ===== */
+/* initial gentle fire */
 setTimeout(()=>fire(innerWidth/2,innerHeight*0.5),800);
 </script>
 </body>
